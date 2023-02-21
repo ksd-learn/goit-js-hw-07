@@ -5,16 +5,17 @@ const divGallery = document.querySelector('.gallery');
 
 const galleryImg = [];
 for (let item of galleryItems) {
-    let a = document.createElement('a');
-    a.classList.add('gallery__link');
-    a.href = item.original;
-    a.innerHTML = `<img
-                        class="gallery__image"
-                        src=${item.preview}
-                        data-source=${item.original}
-                        alt=${item.description}
-                    />`;
-    galleryImg.push(a)
+    let div = document.createElement('div');
+    div.classList.add('gallery__item');
+    div.innerHTML = `<a class="gallery__link" href=${item.original}>
+                        <img
+                            class="gallery__image"
+                            src=${item.preview}
+                            data-source=${item.original}
+                            alt=${item.description}
+                        />
+                    </a>`;
+    galleryImg.push(div)
 }
 divGallery.append(...galleryImg);
 
