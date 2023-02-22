@@ -23,22 +23,23 @@ divGallery.append(...galleryImg);
 divGallery.addEventListener('click', event => {
     event.preventDefault();
     let targClick = event.target;
+    console.log(event.target)
     
-    const instance = basicLightbox.create(`
-        <img class="gallery__image" src=${targClick.dataset.source} alt=${targClick.alt}>
-    `);
-    
-    const closeKey = event => {
-        console.log(event.key)
-        if (event.key == 'Escape') {
-            instance.close();
-            divGallery.removeEventListener('keydown', closeKey)
-        }
-    };
-
-    instance.show();
-    divGallery.addEventListener('keydown', closeKey)
-    
+        // модальное окно вызывается только при click по картинке 
+    if (targClick.localName !== 'div') {
+        const instance = basicLightbox.create(`
+            <img class="gallery__image" src=${targClick.dataset.source} alt=${targClick.alt}>
+        `);
+        const closeKey = event => {
+            console.log(event.key)
+            if (event.key == 'Escape') {
+                instance.close();
+                divGallery.removeEventListener('keydown', closeKey)
+            }
+        };
+        instance.show();
+        divGallery.addEventListener('keydown', closeKey)
+    }
 });
 
 console.log(galleryItems);
