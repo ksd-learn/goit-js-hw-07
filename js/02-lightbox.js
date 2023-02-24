@@ -34,4 +34,3 @@ document.querySelector('.gallery').innerHTML = galleryImg;
 // модальное окно
 const lightbox = new SimpleLightbox('.gallery a', { captionsData:'alt' });
 
-console.log(galleryItems);
